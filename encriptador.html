@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Encriptador / Desencriptador</title>
+<style>
+  body {
+  font-family: 'Courier New', monospace;
+  background-color: #000;
+  color: #0f0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.text-input {
+  padding: 10px;
+  margin-bottom: 16px;
+  width: 100%;
+  border: 1px solid #0f0;
+  background-color: #000;
+  color: #0f0;
+  border-radius: 4px;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #0f0;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #060;
+}
+
+.output {
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid #0f0;
+  border-radius: 4px;
+  width: 100%;
+  color: #0f0;
+}
+
+.output-title {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Encriptador / Desencriptador</h1>
+  <textarea class="text-input" id="inputText" placeholder="Introduce el texto"></textarea>
+  <button onclick="encrypt()">Encriptar</button>
+  <button onclick="decrypt()">Desencriptar</button>
+  <textarea class="output" id="outputText" placeholder="Resultado" readonly></textarea>
+  <textarea class="output" id="decryptedText" placeholder="Texto Desencriptado" readonly></textarea>
+</div>
+<script>
+  function encrypt() {
+    const inputText = document.getElementById('inputText').value;
+    const encryptedText = btoa(inputText); // Encriptar usando Base64
+    document.getElementById('outputText').value = encryptedText;
+  }
+
+  function decrypt() {
+    const encryptedText = document.getElementById('outputText').value;
+    try {
+      const decryptedText = atob(encryptedText); // Desencriptar usando Base64
+      document.getElementById('decryptedText').value = decryptedText;
+    } catch (error) {
+      alert('No se pudo desencriptar el texto. Asegúrate de que el texto encriptado sea válido.');
+    }
+  }
+</script>
+</body>
+</html>
